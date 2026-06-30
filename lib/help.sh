@@ -23,7 +23,8 @@ OPZIONI
     --check          Identico all'esecuzione senza argomenti.
     --test [1-5]     Simula le notifiche senza attendere la reale scadenza.
                      Senza numero simula tutti e 5 i livelli in sequenza;
-                     con un numero simula solo quel livello.
+                     con un numero simula solo quel livello. Se il server di
+                     notifiche supporta le azioni, compare anche "Mostra guida".
     --guide          Mostra la guida per il cambio password.
     --help, -h       Mostra questo aiuto.
     --version, -V    Mostra la versione.

@@ -85,6 +85,10 @@ ricordatichedevicambiare --help     # aiuto completo
 ricordatichedevicambiare --version  # versione
 ```
 
+Se il server di notifiche supporta le azioni, le notifiche mostrano anche
+`Mostra guida`. Su Plasma/KDE l'applicazione prova ad aprire la guida in
+`konsole`, così `mdcat` resta il renderer preferito.
+
 ## Configurazione
 
 File: `~/.config/ricordatichedevicambiare/config.conf`

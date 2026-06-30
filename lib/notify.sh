@@ -57,12 +57,16 @@ rcdc_play_sound() {
     paplay "$file" >/dev/null 2>&1 &
 }
 
+# rcdc_actions_supported — Verifica se notify-send espone il supporto alle azioni.
+rcdc_actions_supported() {
+    notify-send --help 2>&1 | grep -q -- '--action'
+}
+
 # rcdc_notify <livello> <giorni>
 #
 # Invia la notifica desktop corrispondente al livello indicato.
-# Architettura estendibile: per aggiungere in futuro pulsanti (es. "Mostra
-# guida", "Ricordamelo domani") basta popolare l'array `actions` e gestire
-# l'output di notify-send con --action / --wait.
+# Espone anche un'azione "Mostra guida" quando il server di notifiche la
+# supporta; su Plasma viene gestita preferendo l'apertura in Konsole.
 rcdc_notify() {
     local level="$1" days="$2"
 
@@ -82,18 +86,31 @@ rcdc_notify() {
     urgency="$(rcdc_urgency_for_level "$level")"
 
     local title="Ricordati che devi cambiare la password"
+    local selected=""
 
-    # Punto di estensione per i pulsanti (non attivi in questa versione):
-    #   local actions=( --action "guide=Mostra guida" --action "snooze=Ricordamelo domani" )
-    local actions=()
+    if rcdc_actions_supported; then
+        selected="$(
+            notify-send \
+                --app-name="Ricordati che devi cambiare" \
+                --urgency="$urgency" \
+                --icon="${NOTIFICATION_ICON:-dialog-warning}" \
+                --expire-time=15000 \
+                --action="guide=Mostra guida" \
+                "$title" \
+                "$body"
+        )"
+    else
+        notify-send \
+            --app-name="Ricordati che devi cambiare" \
+            --urgency="$urgency" \
+            --icon="${NOTIFICATION_ICON:-dialog-warning}" \
+            "$title" \
+            "$body"
+    fi
 
-    notify-send \
-        --app-name="Ricordati che devi cambiare" \
-        --urgency="$urgency" \
-        --icon="${NOTIFICATION_ICON:-dialog-warning}" \
-        "${actions[@]}" \
-        "$title" \
-        "$body"
+    if [[ "$selected" == "guide" ]]; then
+        rcdc_open_guide >/dev/null 2>&1 || true
+    fi
 
     if (( level >= 5 )); then
         rcdc_play_sound
