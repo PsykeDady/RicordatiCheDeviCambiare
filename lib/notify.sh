@@ -42,6 +42,7 @@ rcdc_play_sound() {
     if [[ -z "$file" ]]; then
         # Suoni di sistema più comuni, in ordine di preferenza.
         local candidates=(
+            "${RCDC_SHARE_DIR:-$HOME/.local/share/ricordatichedevicambiare}/clockalarm.mp3"
             /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
             /usr/share/sounds/freedesktop/stereo/bell.oga
             /usr/share/sounds/freedesktop/stereo/complete.oga

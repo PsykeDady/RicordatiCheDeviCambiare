@@ -9,6 +9,7 @@
 
 RCDC_CONFIG_DIR="${RCDC_CONFIG_DIR:-$HOME/.config/ricordatichedevicambiare}"
 RCDC_CONFIG_FILE="${RCDC_CONFIG_FILE:-$RCDC_CONFIG_DIR/config.conf}"
+RCDC_SHARE_DIR="${RCDC_SHARE_DIR:-$HOME/.local/share/ricordatichedevicambiare}"
 
 # rcdc_set_defaults — Imposta i valori di default per ogni opzione.
 # Le variabili sono usate dagli altri moduli (notify/guide/levels).
@@ -19,7 +20,7 @@ rcdc_set_defaults() {
     SHOW_NOTIFICATION_EVERY_DAY=true
 
     PLAY_SOUND=true
-    SOUND_FILE=
+    SOUND_FILE="$RCDC_SHARE_DIR/clockalarm.mp3"
 
     GUIDE_FILE=
 

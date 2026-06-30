@@ -54,6 +54,8 @@ L'installer:
   dipendenze opzionali vengono rifiutate);
 - copia lo script in `~/.local/bin` e i moduli in
   `~/.local/lib/ricordatichedevicambiare`;
+- installa anche il suono di default `clockalarm.mp3` e le note licenze in
+  `~/.local/share/ricordatichedevicambiare`;
 - installa service e timer in `~/.config/systemd/user`;
 - crea `~/.config/ricordatichedevicambiare` e, se assente, un file di
   configurazione di default;
@@ -92,7 +94,7 @@ File: `~/.config/ricordatichedevicambiare/config.conf`
 | `WARNING_DAYS` | Giorni di preavviso (default: 10). |
 | `SHOW_NOTIFICATION_EVERY_DAY` | `true`: notifica ogni giorno. `false`: notifica solo quando il livello di urgenza aumenta. |
 | `PLAY_SOUND` | Abilita il suono al livello massimo (richiede `paplay`). |
-| `SOUND_FILE` | File audio da riprodurre. Se vuoto, usa un suono di sistema. |
+| `SOUND_FILE` | File audio da riprodurre. Di default punta al suono installato con l'applicazione. Se svuotato manualmente, prova alcuni suoni di sistema. |
 | `GUIDE_FILE` | Guida Markdown mostrata con `--guide`. Se vuoto, usa quella di default. |
 | `NOTIFICATION_ICON` | Icona della notifica (default: `dialog-warning`). |
 | `LV1_MESSAGE` … `LV5_MESSAGE` | Testo dei 5 livelli. `%s` è sostituito con i giorni mancanti. |
@@ -126,3 +128,10 @@ share/guide.md                 Guida di default
 systemd/*.service, *.timer     Unità systemd utente
 install.sh / uninstall.sh      Installazione / rimozione
 ```
+
+## Asset di terze parti
+
+Il file audio di default `clockalarm.mp3` proviene da Pixabay e viene
+distribuito come parte dell'applicazione, non come asset standalone.
+
+Dettagli, sorgente e note licenza: `THIRD_PARTY_NOTICES.md`.

@@ -147,6 +147,14 @@ install_files() {
     info "Copia della guida di default…"
     install -m 0644 "$SRC_DIR/share/guide.md" "$SHARE_DIR/guide.md"
 
+    info "Copia del suono di default…"
+    install -m 0644 "$SRC_DIR/clockalarm.mp3" "$SHARE_DIR/clockalarm.mp3"
+
+    if [[ -f "$SRC_DIR/THIRD_PARTY_NOTICES.md" ]]; then
+        info "Copia delle note licenze terze parti…"
+        install -m 0644 "$SRC_DIR/THIRD_PARTY_NOTICES.md" "$SHARE_DIR/THIRD_PARTY_NOTICES.md"
+    fi
+
     info "Copia di service e timer…"
     install -m 0644 "$SRC_DIR/systemd/$APP_NAME.service" "$SYSTEMD_DIR/$APP_NAME.service"
     install -m 0644 "$SRC_DIR/systemd/$APP_NAME.timer"   "$SYSTEMD_DIR/$APP_NAME.timer"

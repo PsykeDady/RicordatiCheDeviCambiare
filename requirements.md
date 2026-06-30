@@ -84,7 +84,7 @@ WARNING_DAYS=10
 SHOW_NOTIFICATION_EVERY_DAY=true
 
 PLAY_SOUND=true
-SOUND_FILE=
+SOUND_FILE="$HOME/.local/share/ricordatichedevicambiare/clockalarm.mp3"
 
 GUIDE_FILE=
 
