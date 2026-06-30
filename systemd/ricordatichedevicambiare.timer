@@ -1,0 +1,13 @@
+[Unit]
+Description=Controllo giornaliero della scadenza della password
+
+[Timer]
+# Una volta al giorno.
+OnCalendar=daily
+# Recupera l'esecuzione mancata dopo un periodo di spegnimento del PC.
+Persistent=true
+# Distribuisce l'avvio per non eseguire tutto allo scoccare esatto.
+RandomizedDelaySec=5m
+
+[Install]
+WantedBy=timers.target

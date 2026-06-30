@@ -1,0 +1,7 @@
+[Unit]
+Description=Controlla la scadenza della password e notifica l'utente
+Documentation=https://github.com/
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/ricordatichedevicambiare --check
